@@ -3,9 +3,229 @@
 % Author: Fogus (based on Steve Tayon's Clojure and David Liebke's Incanter cheat sheets)
 % Comments, errors, suggestions: fogus -at- clojure -dot- com
 
-
 % License
 % Eclipse Public License v1.0
 % http://opensource.org/licenses/eclipse-1.0.php
 
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+
+\usepackage[table]{xcolor}
+
+% Set column space
+\setlength{\columnsep}{0.25em}
+
+% Define colours
+\definecolorset{hsb}{}{}{red,0,.4,0.95;orange,.1,.4,0.95;green,.25,.4,0.95;yellow,.15,.4,0.95}
+
+\definecolorset{hsb}{}{}{blue,.55,.4,0.95;purple,.7,.4,0.95;pink,.8,.4,0.95;blue2,.58,.4,0.95}
+
+\definecolorset{hsb}{}{}
+{magenta,.9,.4,0.95;green2,.29,.4,0.95}
+
+% Redefine sections
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}
+  {-1.7ex}{0.7ex}{\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}
+  {-1.7ex}{0.5ex}{\normalfont\normalsize\bfseries}}
+\makeatother
+
+% No section numbers
+\setcounter{secnumdepth}{0}
+
+% No indentation
+\setlength{\parindent}{0em}
+
+% No header and footer
+\pagestyle{empty}
+
+
+% A few shortcuts
+\newcommand{\cmd}[1] {\texttt{\textbf{{#1}}}}
+\newcommand{\cmdline}[1] {
+  \begin{tabularx}{\hsize}{X}
+    \texttt{\textbf{{#1}}}
+    \end{tabularx}
+}
+
+\newcommand{\colouredbox}[2] {
+  \colorbox{#1!40}{
+    \begin{minipage}{0.95\linewidth}
+      {
+        \rowcolors[]{1}{#1!20}{#1!10}
+        #2
+        }
+      \end{minipage}
+    }
+}
+
+\begin{document}
+
+\centerline{\Large{\textbf{ClojureScript Cheat Sheet}}}
+\centerline{{\large{\textbf{\textit{http://github.com/clojure/clojurescript}}}}}
+
+\colouredbox{green}{
+\section{Documentation}
+\textmd{\textrm{http://github.com/clojure/clojurescript/wiki}}
+}
+
+\colouredbox{blue}{
+\section{It's (almost) Clojure}
+
+\subsection{Data Structures}
+\begin{tabularx}{\hsize}{lX}
+Foo:& \cmd{bar-chart line-chart}\\
+Bar:& \cmd{add-category}\\
+Baz:& \cmd{add-category}\\
+Quux:& \cmd{add-category}\\
+\end{tabularx}
+
+\subsection{Common Functions}
+\begin{tabularx}{\hsize}{lX}
+Foo:& \cmd{xy-plot scatter-plot}\\
+Bar:& \cmd{add-lines add-points add-function}\\
+Baz:& \cmd{add-points add-polygon, add-text} \\
+Quux:& \cmd{add-points add-polygon, add-text} \\
+Fizz:& \cmd{add-points add-polygon, add-text} \\
+Buzz:& \cmd{add-points add-polygon, add-text} \\
+Bleep:& \cmd{add-points add-polygon, add-text} \\
+Foo:& \cmd{xy-plot scatter-plot}\\
+Bar:& \cmd{add-lines add-points add-function}\\
+Baz:& \cmd{add-points add-polygon, add-text} \\
+Quux:& \cmd{add-points add-polygon, add-text} \\
+Fizz:& \cmd{add-points add-polygon, add-text} \\
+Buzz:& \cmd{add-points add-polygon, add-text} \\
+Bleep:& \cmd{add-points add-polygon, add-text} \\
+\end{tabularx}
+
+\subsection{Macros}
+\begin{tabularx}{\hsize}{lX}
+Foo:& \cmd{bar-chart line-chart}\\
+Bar:& \cmd{add-category}\\
+Baz:& \cmd{add-category}\\
+Quux:& \cmd{add-category}\\
+Fizz:& \cmd{add-category}\\
+\end{tabularx}
+
+\subsection{More information}
+\begin{tabularx}{\hsize}{lX}
+\centerline{{\large{\textbf{\textit{http://clojuredocs.org}}}}}
+\end{tabularx}
+
+}
+
+
+\colouredbox{yellow}{
+\section{JavaScript Interop}
+\begin{tabularx}{\hsize}{lX}
+Foo: & \cmd{matrix diag identity-matrix symmetric-matrix bind-columns bind-rows to-matrix} \\
+Bar: & \cmd{dim ncol nrow rank condition matrix?} \\
+Baz: & \cmd{sel diag group-by} \\
+Quux: & \cmd{plus minus mult div exp log log10 log2 pow sin cos tan asin acos atan abs} \\
+\end{tabularx}
+
+}
+
+
+\colouredbox{green}{
+\section{Other Useful Libraries}
+\begin{tabularx}{\hsize}{lX}
+Foo: & http://github.com/levand/domina \\
+Foo: & http://github.com/levand/domina \\
+Foo: & http://github.com/levand/domina \\
+Foo: & http://github.com/levand/domina \\
+Foo: & http://github.com/levand/domina \\
+\end{tabularx}
+
+}
+
+\colouredbox{blue2}{
+\section{Compiler}
+\begin{tabularx}{\hsize}{lX}
+Foo: & \cmdline{cljsc --blah} \\
+Bar: & \cmdline{cljsc --blah} \\
+\end{tabularx}
+
+}
+
+
+\colouredbox{magenta}{
+\section{Namespaces}
+\begin{tabularx}{\hsize}{lX}
+Foo: & \cmd{dim ncol nrow dataset?} \\
+Bar: & \cmd{sel group-by} \\
+Baz: & \cmd{to-matrix} \\
+Quux: & \cmd{view} \\
+\end{tabularx}
+
+}
+
+
+\colouredbox{orange}{
+\section{Creating Abstractions}
+
+\subsection{Protocols}
+\begin{tabularx}{\hsize}{lX}
+Foo:& \cmd{bar-chart line-chart}\\
+Bar:& \cmd{add-category}\\
+Baz:& \cmd{add-category}\\
+Quux:& \cmd{add-category}\\
+\end{tabularx}
+
+\subsection{Records}
+\begin{tabularx}{\hsize}{lX}
+Foo:& \cmd{xy-plot scatter-plot}\\
+Bar:& \cmd{add-lines add-points add-function}\\
+Baz:& \cmd{add-points add-polygon, add-text} \\
+Quux:& \cmd{add-points add-polygon, add-text} \\
+Fizz:& \cmd{add-points add-polygon, add-text} \\
+\end{tabularx}
+
+\subsection{Types}
+\begin{tabularx}{\hsize}{lX}
+Foo:& \cmd{bar-chart line-chart}\\
+Bar:& \cmd{add-category}\\
+Baz:& \cmd{add-category}\\
+Quux:& \cmd{add-category}\\
+Fizz:& \cmd{add-category}\\
+\end{tabularx}
+
+\subsection{Reify}
+\begin{tabularx}{\hsize}{lX}
+Foo:& \cmd{bar-chart line-chart}\\
+Bar:& \cmd{add-category}\\
+\end{tabularx}
+
+\subsection{Multimethods}
+\begin{tabularx}{\hsize}{lX}
+Foo:& \cmd{bar-chart line-chart}\\
+Bar:& \cmd{add-category}\\
+\end{tabularx}
+
+}
+
+
+\colouredbox{pink}{
+\section{ClojureScript Core Utils}
+\begin{tabularx}{\hsize}{lX}
+Strings:& \cmd{bar-chart line-chart}\\
+Sets:& \cmd{add-category}\\
+Zipper:& \cmd{add-category}\\
+Browser Utils:& \cmd{add-category}\\
+\end{tabularx}
+
+}
+
+
+\begin{flushright}
+\footnotesize
+\rule{0.7\linewidth}{0.25pt}
+\verb!$Revision: 0.1, $Date: Feb 08, 2012!\\
+\verb!Fogus (fogus -at- clojure -dot- com)!
+\end{flushright}
 \end{document}
