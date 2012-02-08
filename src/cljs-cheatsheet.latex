@@ -1,0 +1,11 @@
+\documentclass[footexclude,twocolumn,DIV25,fontsize=10pt]{scrreprt} 
+
+% Author: Fogus (based on Steve Tayon's Clojure and David Liebke's Incanter cheat sheets)
+% Comments, errors, suggestions: fogus -at- clojure -dot- com
+
+
+% License
+% Eclipse Public License v1.0
+% http://opensource.org/licenses/eclipse-1.0.php
+
+\end{document}
