@@ -64,6 +64,16 @@
     }
 }
 
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage[small,bf]{caption}
+
+\DeclareCaptionFont{white}{\color{white}}
+%\DeclareCaptionFormat{listing}{\colorbox{yellow}{\parbox{\textwidth}{#1#2#3}}}
+\DeclareCaptionFormat{listing}{\colorbox{yellow}{\parbox{0.95\linewidth}{\hspace{15pt}#1#2#3}}}
+\captionsetup[lstlisting]{format=listing}
+
 \begin{document}
 
 \centerline{\Large{\textbf{ClojureScript Cheat Sheet}}}
@@ -73,6 +83,15 @@
 \section{Documentation}
 \textmd{\textrm{http://github.com/clojure/clojurescript/wiki}}
 }
+
+
+\begin{lstlisting}[label=ns,caption=Example Namespace Declaration,language=Lisp]
+(ns my-cool-lib
+  (:require [some-lib :as lib])
+  (:use [another-lib :only (a-func)])
+  (:require-macros [my.macros :as macs]))
+\end{lstlisting}
+
 
 \colouredbox{red}{
 \section{Rich Data Literals}
@@ -84,40 +103,25 @@ Truth and nullity: & \cmd{true, false, nil} \\
 Keywords: & \cmd{:kw, :a-2, :prefix/kw, ::pi} \\
 Symbols: & \cmd{sym, sym-2, prefix/sym} \\
 Characters: & \cmd{\textbackslash a, \textbackslash u1123, \textbackslash space} \\
-Integers: & same as in JavaScript \\
-Floats: & same as in JavaScript \\
-Strings: & same as in JavaScript \\
+Int, Float, String: & same as in JavaScript \\
 \end{tabularx}
 
 }
 
 
 \colouredbox{blue}{
-\section{It's (mostly) Clojure}
-
-\subsection{Frequently Used Functions}
+\section{Frequently Used Functions}
 \begin{tabularx}{\hsize}{lX}
 Math:& \cmd{+ - * / quot rem mod inc dec max min}\\
 Comparison:& \cmd{= == not= < > <= >=}\\
 Tests:& \cmd{nil? identical? zero? pos? neg? even? odd? true? false? nil?} \\
 Keywords:& \cmd{keyword keyword?} \\
 Symbols:& \cmd{symbol symbol? gensym} \\
-Macros:& \cmd{if if-let cond and or -> ->> doto when when-let ..}\\
 Data Processing:& \cmd{map reduce filter partition split-at split-with} \\
-Data Create:& \cmd{vector vec hash-map set list list*} \\
+Data Create:& \cmd{vector vec hash-map set list list* for} \\
 Data Examination:& \cmd{first rest count get nth get get-in contains? find keys vals} \\
 Data Manipulation:& \cmd{seq into conj cons assoc assoc-in dissoc zipmap merge merge-with select-keys update-in}\\
-Arrays:& \cmd{into-array to-array aget aset}\\
-\end{tabularx}
-
-
-\subsection{Macros}
-\begin{tabularx}{\hsize}{lX}
-Organization:& in a \cmd{cljs-macros} directory in the source home\\
-Importing:& \cmd{(ns foo (:require-macros [my.macros :as macs]))}\\
-Defining:& \cmd{defmacro}\\
-Implementation:& Must be written in Clojure \\
-Emission:& Must emit ClojureScript \\
+Arrays:& \cmd{into-array to-array aget aset amap areduce alength}\\
 \end{tabularx}
 
 \subsection{More information}
@@ -128,92 +132,81 @@ Emission:& Must emit ClojureScript \\
 }
 
 
-\colouredbox{yellow}{
-\section{JavaScript Interop}
+\colouredbox{pink}{
+\section{Frequently Used Macros}
 \begin{tabularx}{\hsize}{lX}
-Foo: & \cmd{matrix diag identity-matrix symmetric-matrix bind-columns bind-rows to-matrix} \\
-Bar: & \cmd{dim ncol nrow rank condition matrix?} \\
-Baz: & \cmd{sel diag group-by} \\
-Quux: & \cmd{plus minus mult div exp log log10 log2 pow sin cos tan asin acos atan abs} \\
-\end{tabularx}
-
-}
-
-
-\colouredbox{blue2}{
-\section{Compiler}
-\begin{tabularx}{\hsize}{lX}
-Foo: & \cmdline{cljsc --blah} \\
-Bar: & \cmdline{cljsc --blah} \\
-\end{tabularx}
-
-}
-
-
-\colouredbox{magenta}{
-\section{Namespaces}
-\begin{tabularx}{\hsize}{lX}
-Foo: & \cmd{dim ncol nrow dataset?} \\
-Bar: & \cmd{sel group-by} \\
-Baz: & \cmd{to-matrix} \\
-Quux: & \cmd{view} \\
+Defining:& \cmd{defmacro}\\
+Macros:& \cmd{if if-let cond and or -> ->> doto when when-let ..}\\
+Implementation:& Must be written in Clojure \\
+Emission:& Must emit ClojureScript \\
 \end{tabularx}
 
 }
 
 
 \colouredbox{orange}{
-\section{Creating Abstractions}
+\section{Abstraction (http://clojure.org/protocols)}
 
 \subsection{Protocols}
 \begin{tabularx}{\hsize}{lX}
-Foo:& \cmd{bar-chart line-chart}\\
-Bar:& \cmd{add-category}\\
-Baz:& \cmd{add-category}\\
-Quux:& \cmd{add-category}\\
+Definition:& \cmd{(defprotocol Slicey (slice [at]))} \\
+Extend:& \cmd{(extend-type js/String Slicey (slice [at] ...))} \\
+Extend null:& \cmd{(extend-type nil Slicey (slice [\_] nil))} \\
+Reify:& \cmd{(reify Slicey (slice [at] ...))}\\
 \end{tabularx}
 
 \subsection{Records}
 \begin{tabularx}{\hsize}{lX}
-Foo:& \cmd{xy-plot scatter-plot}\\
-Bar:& \cmd{add-lines add-points add-function}\\
-Baz:& \cmd{add-points add-polygon, add-text} \\
-Quux:& \cmd{add-points add-polygon, add-text} \\
-Fizz:& \cmd{add-points add-polygon, add-text} \\
+Definition:& \cmd{(defrecord Pair [h t])} \\
+Access:& \cmd{(:h (Pair. 1 2)) ;=> 1} \\
+Constructing:& \cmd{Pair. ->Pair map->Pair} \\
 \end{tabularx}
 
 \subsection{Types}
 \begin{tabularx}{\hsize}{lX}
-Foo:& \cmd{bar-chart line-chart}\\
-Bar:& \cmd{add-category}\\
-Baz:& \cmd{add-category}\\
-Quux:& \cmd{add-category}\\
-Fizz:& \cmd{add-category}\\
-\end{tabularx}
-
-\subsection{Reify}
-\begin{tabularx}{\hsize}{lX}
-Foo:& \cmd{bar-chart line-chart}\\
-Bar:& \cmd{add-category}\\
+Definition:& \cmd{(deftype Pair [h t])} \\
+Access:& \cmd{(.h (Pair. 1 2)) ;=> 1} \\
+Constructing:& \cmd{Pair. ->Pair} \\
+With Method(s):& \cmd{(deftype Pair [h t] Object (toString [] ...))} \\
 \end{tabularx}
 
 \subsection{Multimethods}
 \begin{tabularx}{\hsize}{lX}
-Foo:& \cmd{bar-chart line-chart}\\
-Bar:& \cmd{add-category}\\
+Definition:& \cmd{(defmulti my-mm dispatch-function)}\\
+Method Define:& \cmd{(defmethod my-mm :dispatch-value [args] ...)}\\
+\end{tabularx}
+
+}
+
+\colouredbox{yellow}{
+\section{JS Interop (http://fogus.me/cljs-js)}
+\begin{tabularx}{\hsize}{lX}
+Method Call: & \cmd{(.meth obj args)} \\
+Method Call: & \cmd{(. obj (meth args))} \\
+Property Access: & \cmd{(. obj -prop)} \\
+Property Access: & \cmd{(.-prop obj)} \\
+Set Property: & \cmd{(set! (.-prop obj) val)} \\
+JS Direct Access: & \cmd{js/something} \\
+JS \cmd{this}: & \cmd{(this-as me (.method me))} \\
+Create JS Object: & \cmd{(js-obj)} \\
+\end{tabularx}
+
+}
+
+
+\colouredbox{blue2}{
+\section{Compilation (http://fogus.me/cljsc)}
+\begin{tabularx}{\hsize}{lX}
+Simple Compile: & \cmdline{cljsc src-home '\{:optimizations :simple :pretty-print true\}'} \\
+Advanced Compile: & \cmdline{cljsc src-home '\{:optimizations :advanced\}'} \\
 \end{tabularx}
 
 }
 
 
 \colouredbox{pink}{
-\section{ClojureScript Core Utils}
-\begin{tabularx}{\hsize}{lX}
-Strings:& \cmd{bar-chart line-chart}\\
-Sets:& \cmd{add-category}\\
-Zipper:& \cmd{add-category}\\
-Browser Utils:& \cmd{add-category}\\
-\end{tabularx}
+\section{Extra ClojureScript Libraries}
+\cmd{clojure.\{string set zipper\} clojure.browser.\{dom event net repl\}}\\
 
 }
 
@@ -221,11 +214,12 @@ Browser Utils:& \cmd{add-category}\\
 \colouredbox{green}{
 \section{Other Useful Libraries}
 \begin{tabularx}{\hsize}{lX}
-Foo: & http://github.com/levand/domina \\
-Foo: & http://github.com/levand/domina \\
-Foo: & http://github.com/levand/domina \\
-Foo: & http://github.com/levand/domina \\
-Foo: & http://github.com/levand/domina \\
+App Sample: & http://clojurescriptone.com \\
+Client/Server: & http://github.com/ibdknox/fetch \\
+D3: & http://github.com/lynaghk/cljs-d3 \\
+DOM: & http://github.com/levand/domina \\
+Framework: & http://github.com/ibdknox/pinot \\
+jQuery: & http://github.com/ibdknox/jayq \\
 \end{tabularx}
 
 }
@@ -234,7 +228,7 @@ Foo: & http://github.com/levand/domina \\
 \begin{flushright}
 \footnotesize
 \rule{0.7\linewidth}{0.25pt}
-\verb!$Revision: 0.1, $Date: Feb 08, 2012!\\
+\verb!$Revision: 1.0, $Date: Feb 08, 2012!\\
 \verb!Fogus (fogus -at- clojure -dot- com)!
 \end{flushright}
 \end{document}
