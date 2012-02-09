@@ -1,6 +1,6 @@
-# clojurescript-cheatsheets
+# clojure-cheatsheets
 
-ClojureScript cheatsheets in PDFs and Tex formats.
+Clojure cheatsheets in PDFs and Tex formats.
 
 ## License
 

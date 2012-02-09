@@ -74,42 +74,50 @@
 \textmd{\textrm{http://github.com/clojure/clojurescript/wiki}}
 }
 
+\colouredbox{red}{
+\section{Rich Data Literals}
+\begin{tabularx}{\hsize}{lX}
+Maps: & \cmd{\{:key1 :val1, :key2 :val2\}} \\
+Vectors: & \cmd{[1 2 3 4 :a :b :c 1 2]} \\
+Sets: & \cmd{\#\{:a :b :c 1 2 3\}} \\
+Truth and nullity: & \cmd{true, false, nil} \\
+Keywords: & \cmd{:kw, :a-2, :prefix/kw, ::pi} \\
+Symbols: & \cmd{sym, sym-2, prefix/sym} \\
+Characters: & \cmd{\textbackslash a, \textbackslash u1123, \textbackslash space} \\
+Integers: & same as in JavaScript \\
+Floats: & same as in JavaScript \\
+Strings: & same as in JavaScript \\
+\end{tabularx}
+
+}
+
+
 \colouredbox{blue}{
-\section{It's (almost) Clojure}
+\section{It's (mostly) Clojure}
 
-\subsection{Data Structures}
+\subsection{Frequently Used Functions}
 \begin{tabularx}{\hsize}{lX}
-Foo:& \cmd{bar-chart line-chart}\\
-Bar:& \cmd{add-category}\\
-Baz:& \cmd{add-category}\\
-Quux:& \cmd{add-category}\\
+Math:& \cmd{+ - * / quot rem mod inc dec max min}\\
+Comparison:& \cmd{= == not= < > <= >=}\\
+Tests:& \cmd{nil? identical? zero? pos? neg? even? odd? true? false? nil?} \\
+Keywords:& \cmd{keyword keyword?} \\
+Symbols:& \cmd{symbol symbol? gensym} \\
+Macros:& \cmd{if if-let cond and or -> ->> doto when when-let ..}\\
+Data Processing:& \cmd{map reduce filter partition split-at split-with} \\
+Data Create:& \cmd{vector vec hash-map set list list*} \\
+Data Examination:& \cmd{first rest count get nth get get-in contains? find keys vals} \\
+Data Manipulation:& \cmd{seq into conj cons assoc assoc-in dissoc zipmap merge merge-with select-keys update-in}\\
+Arrays:& \cmd{into-array to-array aget aset}\\
 \end{tabularx}
 
-\subsection{Common Functions}
-\begin{tabularx}{\hsize}{lX}
-Foo:& \cmd{xy-plot scatter-plot}\\
-Bar:& \cmd{add-lines add-points add-function}\\
-Baz:& \cmd{add-points add-polygon, add-text} \\
-Quux:& \cmd{add-points add-polygon, add-text} \\
-Fizz:& \cmd{add-points add-polygon, add-text} \\
-Buzz:& \cmd{add-points add-polygon, add-text} \\
-Bleep:& \cmd{add-points add-polygon, add-text} \\
-Foo:& \cmd{xy-plot scatter-plot}\\
-Bar:& \cmd{add-lines add-points add-function}\\
-Baz:& \cmd{add-points add-polygon, add-text} \\
-Quux:& \cmd{add-points add-polygon, add-text} \\
-Fizz:& \cmd{add-points add-polygon, add-text} \\
-Buzz:& \cmd{add-points add-polygon, add-text} \\
-Bleep:& \cmd{add-points add-polygon, add-text} \\
-\end{tabularx}
 
 \subsection{Macros}
 \begin{tabularx}{\hsize}{lX}
-Foo:& \cmd{bar-chart line-chart}\\
-Bar:& \cmd{add-category}\\
-Baz:& \cmd{add-category}\\
-Quux:& \cmd{add-category}\\
-Fizz:& \cmd{add-category}\\
+Organization:& in a \cmd{cljs-macros} directory in the source home\\
+Importing:& \cmd{(ns foo (:require-macros [my.macros :as macs]))}\\
+Defining:& \cmd{defmacro}\\
+Implementation:& Must be written in Clojure \\
+Emission:& Must emit ClojureScript \\
 \end{tabularx}
 
 \subsection{More information}
@@ -131,18 +139,6 @@ Quux: & \cmd{plus minus mult div exp log log10 log2 pow sin cos tan asin acos at
 
 }
 
-
-\colouredbox{green}{
-\section{Other Useful Libraries}
-\begin{tabularx}{\hsize}{lX}
-Foo: & http://github.com/levand/domina \\
-Foo: & http://github.com/levand/domina \\
-Foo: & http://github.com/levand/domina \\
-Foo: & http://github.com/levand/domina \\
-Foo: & http://github.com/levand/domina \\
-\end{tabularx}
-
-}
 
 \colouredbox{blue2}{
 \section{Compiler}
@@ -217,6 +213,19 @@ Strings:& \cmd{bar-chart line-chart}\\
 Sets:& \cmd{add-category}\\
 Zipper:& \cmd{add-category}\\
 Browser Utils:& \cmd{add-category}\\
+\end{tabularx}
+
+}
+
+
+\colouredbox{green}{
+\section{Other Useful Libraries}
+\begin{tabularx}{\hsize}{lX}
+Foo: & http://github.com/levand/domina \\
+Foo: & http://github.com/levand/domina \\
+Foo: & http://github.com/levand/domina \\
+Foo: & http://github.com/levand/domina \\
+Foo: & http://github.com/levand/domina \\
 \end{tabularx}
 
 }
