@@ -89,7 +89,8 @@
 (ns my-cool-lib
   (:require [some-lib :as lib])
   (:use [another-lib :only (a-func)])
-  (:require-macros [my.macros :as macs]))
+  (:require-macros [my.macros :as macs])
+  (:use-macros [mo.macros :only (a-macro)]))
 \end{lstlisting}
 
 
