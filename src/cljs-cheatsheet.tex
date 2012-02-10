@@ -13,7 +13,7 @@
 \usepackage{textcomp}
 \usepackage[english]{babel}
 \usepackage{tabularx}
-
+\usepackage{verbatim}
 \usepackage[table]{xcolor}
 
 % Set column space
@@ -21,11 +21,13 @@
 
 % Define colours
 \definecolorset{hsb}{}{}{red,0,.4,0.95;orange,.1,.4,0.95;green,.25,.4,0.95;yellow,.15,.4,0.95}
-
 \definecolorset{hsb}{}{}{blue,.55,.4,0.95;purple,.7,.4,0.95;pink,.8,.4,0.95;blue2,.58,.4,0.95}
+\definecolorset{hsb}{}{}{magenta,.9,.4,0.95;green2,.29,.4,0.95}
 
-\definecolorset{hsb}{}{}
-{magenta,.9,.4,0.95;green2,.29,.4,0.95}
+\definecolor{Brown}{cmyk}{0,0.81,1,0.60}
+\definecolor{OliveGreen}{cmyk}{0.64,0,0.95,0.40}
+\definecolor{CadetBlue}{cmyk}{0.62,0.57,0.23,0}
+\definecolor{lightlightgray}{gray}{0.9}
 
 % Redefine sections
 \makeatletter
@@ -70,7 +72,6 @@
 \usepackage[small,bf]{caption}
 
 \DeclareCaptionFont{white}{\color{white}}
-%\DeclareCaptionFormat{listing}{\colorbox{yellow}{\parbox{\textwidth}{#1#2#3}}}
 \DeclareCaptionFormat{listing}{\colorbox{yellow}{\parbox{0.95\linewidth}{\hspace{15pt}#1#2#3}}}
 \captionsetup[lstlisting]{format=listing}
 
@@ -84,13 +85,20 @@
 \textmd{\textrm{http://github.com/clojure/clojurescript/wiki}}
 }
 
+\lstset{
+language=Lisp,                             % Code langugage
+basicstyle=\ttfamily,
+keywordstyle=\color{OliveGreen},
+morekeywords={require, use, ns, require-macros, use-macros, as, only},
+frame=none,
+}
 
-\begin{lstlisting}[label=ns,caption=Example Namespace Declaration,language=Lisp]
+\begin{lstlisting}[label=ns,caption=Example Namespace Declaration]
 (ns my-cool-lib
   (:require [some-lib :as lib])
   (:use [another-lib :only (a-func)])
   (:require-macros [my.macros :as macs])
-  (:use-macros [mo.macros :only (a-macro)]))
+  (:use-macros [mo.macs :only (my-mac)]))
 \end{lstlisting}
 
 
@@ -104,7 +112,7 @@ Truth and nullity: & \cmd{true, false, nil} \\
 Keywords: & \cmd{:kw, :a-2, :prefix/kw, ::pi} \\
 Symbols: & \cmd{sym, sym-2, prefix/sym} \\
 Characters: & \cmd{\textbackslash a, \textbackslash u1123, \textbackslash space} \\
-Int, Float, String: & same as in JavaScript \\
+Numbers/Strings: & same as in JavaScript \\
 \end{tabularx}
 
 }
@@ -187,7 +195,7 @@ Method Call: & \cmd{(. obj (meth args))} \\
 Property Access: & \cmd{(. obj -prop)} \\
 Property Access: & \cmd{(.-prop obj)} \\
 Set Property: & \cmd{(set! (.-prop obj) val)} \\
-JS Direct Access: & \cmd{js/something} \\
+JS Global Access: & \cmd{js/window} \\
 JS \cmd{this}: & \cmd{(this-as me (.method me))} \\
 Create JS Object: & \cmd{(js-obj)} \\
 \end{tabularx}
@@ -217,7 +225,7 @@ Advanced Compile: & \cmdline{cljsc src-home '\{:optimizations :advanced\}'} \\
 \begin{tabularx}{\hsize}{lX}
 App Sample: & http://clojurescriptone.com \\
 Client/Server: & http://github.com/ibdknox/fetch \\
-D3: & http://github.com/lynaghk/cljs-d3 \\
+Data Viz: & http://github.com/lynaghk/cljs-d3 \\
 DOM: & http://github.com/levand/domina \\
 jQuery: & http://github.com/ibdknox/jayq \\
 Templating: & http://github.com/ibdknox/crate \\
